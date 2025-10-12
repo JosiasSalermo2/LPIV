@@ -26,6 +26,7 @@ public class PessoaTest {
 
     @Test
     void deveVerificarPesoValido(){
+        pessoa.setPeso(0.1f);
         assertEquals(0.1f,pessoa.getPeso());
     }
 
@@ -45,8 +46,6 @@ public class PessoaTest {
         pessoa.setGenero("Masculino");
         pessoa.setPeso(27.7f);
         assertEquals("Marginalmente acima", pessoa.definirStatus());
-        
-        String status = pessoa.definirStatus();
     }
     
     @Test
@@ -60,14 +59,29 @@ public class PessoaTest {
     void deveVerificarAcimaPesoMasculino(){
         pessoa.setGenero("Masculino");
         pessoa.setPeso(31);
-        assetEquals("Acima do peso", pessoa.definirStatus());
+        assertEquals("Acima do peso", pessoa.definirStatus());
     }
     
     @Test
     void deveVerificarAcimaPesoFeminino(){
         pessoa.setGenero("Feminino");
-        pessoa.setPeso(32.2);
-        assetEquals("Acima do do peso", pessoa.definirStatus());
+        pessoa.setPeso(32.2f);
+        assertEquals("Acima do do peso", pessoa.definirStatus());
+    }
+
+    @Test
+    void deveVerificarObesoMasculino(){
+        pessoa.setGenero("Masculino");
+        pessoa.setPeso(31.1f);
+        assertEquals("Obeso", pessoa.definirStatus());
+    }
+
+    @Test
+    void deveVerificarObesoFeminino(){
+        pessoa.setGenero("Feminino");
+        pessoa.setPeso(32.3f);
+        assertEquals("Obeso", pessoa.definirStatus());
+
     }
 
 }
